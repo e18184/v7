@@ -1,0 +1,93 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"   %>
+<%@taglib  prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Insertar Datos del Estudiante</h1>
+        
+        <form:form method="post" commandName="datos">
+            <form:errors path="*"  />
+            <p>
+                <form:label path="ci">ci</form:label>
+                <form:input path="ci" />
+                <form:errors path="ci" />
+            </p>
+            
+            <p>
+                <form:label path="rude">Rude</form:label>
+                <form:input path="rude" />
+                <form:errors path="rude" />
+            </p>
+            
+            <p>
+                <form:label path="nombre">Nombre</form:label>
+                <form:input path="nombre" />
+                <form:errors path="nombre" />
+            </p>
+            
+            <p>
+                <form:label path="ap">Apellido Paterno</form:label>
+                <form:input path="ap" />
+                <form:errors path="ap" />
+            </p>
+            
+            <p>
+                <form:label path="am">Apellido Materno</form:label>
+                <form:input path="am" />
+                <form:errors path="am" />
+            </p>
+            
+            <p>
+                <form:label path="correo">Correo</form:label>
+                <form:input path="correo" />
+                <form:errors path="correo" />
+            </p>
+            
+            <p>
+                <form:label path="telefono">Telefono</form:label>
+                <form:input path="telefono" />
+                
+            </p>
+            
+            <p>
+                <form:label path="usuario">Usuario</form:label>
+                <form:input path="usuario" />
+                <form:errors path="usuario" />
+            </p>
+            
+            <p>
+                <form:label path="contrasena">Contraseña</form:label>
+                <form:password path="contrasena" />
+                <form:errors path="contrasena" />
+            </p>
+            
+            <p>
+               <form:label path="suspendido">Suspendido</form:label> 
+                <form:select path="suspendido"> 
+                    <form:option value="0">Seleccione.....</form:option>
+                    <form:options items="${suspendidos}" />
+                </form:select>
+                <form:errors path="suspendido" />
+            </p>
+        
+            <p>
+                <form:label path="direccion">Direccion</form:label>
+                <form:input path="direccion" />
+            </p>
+            
+            <p>
+                <form:label path="imagen">Imagen</form:label>
+                <form:input path="imagen" />
+            </p>
+          
+            <hr>
+            <form:button >Aceptar</form:button> <a href="listaEstudiantes.htm"> Cancelar </a>
+        </form:form>
+        
+    </body>
+</html>

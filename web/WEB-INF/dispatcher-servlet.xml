@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+    <bean class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+
+    <!--
+    Most controllers will use the ControllerClassNameHandlerMapping above, but
+    for the index controller we are using ParameterizableViewController, so we must
+    define an explicit mapping for it.
+    -->
+    <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">        
+        <property name="mappings">
+            <props>
+                <prop key="index.htm">indexController</prop>
+                <prop key="insertarEstudiante.htm">formInsertarEstudianteControler</prop>
+                <prop key="listaEstudiantes.htm">formListaEstudianteControler</prop>
+                <prop key="modificarEstudiante.htm">formModificarEstudianteControler</prop>
+                <!-- matricular estudiante Principal -->
+                <prop key="listarmatriculaParaleloEstudiantes.htm">formmatriculaParaleloEstudiantes</prop>
+                <prop key="matricularestudiante.htm">formmatricularestudiante</prop>
+                <prop key="adicionarmatricula.htm">formadicionarmatricula</prop>
+                <prop key="modificarmatricula.htm">formmodificarmatricula</prop> 
+                  <!--asigna un paralelo a un aula -->
+                <prop key="listarParaleloAula.htm">formlistarparaleloaula</prop>
+                <prop key="adicionarparaleloaula.htm">formadicionarparaleloaula</prop>
+                <prop key="modificarparaleloaula.htm"> formmodificarparaleloaula </prop>
+                <!-- profesor de curso -->
+                <prop key="listaProfesorCurso.htm">formlistarprofesorcurso</prop>
+            </props>
+        </property>
+    </bean>
+
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:prefix="/WEB-INF/jsp/"
+          p:suffix=".jsp" />
+
+    <!--
+    The index controller.
+    -->
+    <bean name="formInsertarEstudianteControler" class="model.controler.estudiante.InsertarEstudianteControler" />
+    <bean name="formListaEstudianteControler" class="model.controler.estudiante.ListEstudianteControler"/>
+     <bean name="formModificarEstudianteControler" class="model.controler.estudiante.ModificarEstudianteControler"/>
+    <bean name="indexController" class="org.springframework.web.servlet.mvc.ParameterizableViewController"  p:viewName="index" />
+<!-- matricular estudiante a un paralelo -->
+    <bean name="formmatriculaParaleloEstudiantes" class="model.controler.estudianteparalelo.ListarEstudianteParaleloControler"/>
+    <bean name="formmatricularestudiante" class="model.controler.estudianteparalelo.MatricularEstudianteParaleloControler"/>  
+    <bean name="formadicionarmatricula" class="model.controler.estudianteparalelo.AdicionarMatriculaControler" />
+    <bean name="formmodificarmatricula" class="model.controler.estudianteparalelo.ModificarMatriculaControler" />
+<!--asigna un paralelo a un aula -->
+    <bean name="formlistarparaleloaula" class="model.controler.paralelo.ListarParaleloAulaControler"/>
+    <bean name="formadicionarparaleloaula" class="model.controler.paralelo.AdicionarParaleloAulaControler"/>
+    <bean name="formmodificarparaleloaula" class="model.controler.paralelo.ModificarParaleloAulaControler" />
+<!-- profesor curso -->
+    <bean name="formlistarprofesorcurso" class="model.controler.profesor.ListProfesorCursoControler" />
+</beans>
